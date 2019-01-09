@@ -1,18 +1,13 @@
-import './App.css';
-
 import React, { Component } from 'react';
-
 import Header from './components/header/Header';
 import Router from './routing/Router';
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
+      <div className="app">
          <Header />
-         <div className="app-container">
-            <Router></Router>
-         </div>
+         <Router></Router>  
       </div>
     );
   }

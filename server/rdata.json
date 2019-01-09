@@ -1,0 +1,37 @@
+{
+    "names" : [
+        {"first":"William","last" : "Shakespeare"},
+        {"first":"Agatha","last" : "Christiethe"},
+        {"first":"Dan","last" : "Brown"},
+        {"first":"John","last" : "Grisham"},
+        {"first":"Harold","last" : "Robbins"},
+        {"first":"Georges","last" : "Simenon"},
+        {"first":"Enid","last" : "Blyton"},
+        {"first":"Sidney","last" : "Sheldon"},
+        {"first":"J.K.","last" : "Rowling"},
+        {"first":"Gilbert","last" : "Patten"},
+        {"first":"Dr.","last" : "Seusse"},
+        {"first":"Eiichiro","last" : "OdaLeo Tolstoy"},
+        {"first":"Corín","last" : "Tellado"},
+        {"first":"Jackie","last" : "Collins"},
+        {"first":"Horatio","last" : "Alger"},
+        {"first":"R.L.","last" : "Stineies"},
+        {"first":"Dean","last" : "Koontz"},
+        {"first":"Nora","last" : "Roberts"},
+        {"first":"Akira","last" : "Toriy"},
+        {"first":"Stephen","last" : "King"}
+    ],
+    "emails" : [
+        "@on.sun",
+        "@on.mercury",
+        "@on.venus",
+        "@on.earth",
+        "@on.mars",
+        "@on.jupiter",
+        "@on.saturn",
+        "@on.uranus",
+        "@on.neptune",
+        "@on.pluto"
+    ]
+
+}

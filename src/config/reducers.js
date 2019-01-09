@@ -1,5 +1,16 @@
-const initialState = {}
+const initialState = {
+    participants: []
+}
 
-const mainReducer = (state = initialState) => state;
+const participantReducer = (state = initialState, action) => {
+    switch(action.type) {
+        case 'PARTICIPANTS_LOADED':
+            return {
+                ...state,
+                participants: action.participants
+            }
+        default: return state
+    }
+}
 
-export { mainReducer }
+export { participantReducer }
