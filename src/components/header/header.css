@@ -1,0 +1,26 @@
+.header {
+    width:100%;
+    justify-content: space-between;
+    align-content: center;
+    display: flex;
+    background-color: #bdc3c7;
+}
+
+.header__brand {
+    justify-self: center;
+    align-self: center;
+    display: flex;
+    align-items: center;
+    margin: 3.2rem;
+}
+
+.header__brand-text {
+    font-size: 2rem;
+    margin-left: 1rem;
+    font-weight: 300;
+    color: #ecf0f1;
+}
+
+#logo {
+    background-color: white;
+}

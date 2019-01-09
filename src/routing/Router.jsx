@@ -1,16 +1,16 @@
 import React from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
 
-import NewUserView from '../views/NewUserView';
-import UsersView from '../views/UsersView';
-import UserView from '../views/UserView';
+import NewParticipantView from '../views/new-participant/NewParticipantView';
+import ParticipantView from '../views/participant/ParticipantView';
+import ParticipantsView from '../views/participants/ParticipantsView';
 
 const Router = () => (
   <Switch>
-    <Route exact path="/users" component={UsersView} />
-    <Route exact path="/users/user/:id" component={UserView} />
-    <Route exact path="/users/new" component={NewUserView} />
-    <Route render={() => <Redirect to="/users"/>}/>
+    <Route exact path="/participants" component={ParticipantsView} />
+    <Route exact path="/participants/user/:id" component={ParticipantView} />
+    <Route exact path="/participants/new" component={NewParticipantView} />
+    <Route render={() => <Redirect to="/participants"/>}/>
   </Switch>
 )
 
