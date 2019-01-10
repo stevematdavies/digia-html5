@@ -1,4 +1,6 @@
-export const onParticipantsLoaded = (participants) => ({
-    type: 'PARTICIPANTS_LOADED',
+
+
+export const actionParticipantsUpdated = (participants) => ({
+    type: 'PARTICIPANTS_UPDATED',
     participants
-});
+})

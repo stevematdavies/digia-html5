@@ -5,15 +5,15 @@ const appDb = new sqlite3.Database(path.resolve(__dirname, 'app.db'));
 const _ = require('lodash');
 
 
-appDb.serialize(function () {
-
-    appDb.run('CREATE TABLE IF NOT EXISTS participant (id INTEGER PRIMARY KEY AUTOINCREMENT, name string, email string, phone string)');
-    
-   /*  let stmt = appDb.prepare('INSERT INTO participant (name, email, phone) VALUES (?, ?, ?)');
+const populateDb = () => {
+    let stmt = appDb.prepare('INSERT INTO participant (name, email, phone) VALUES (?, ?, ?)');
     _.each(participants, (p) => stmt.run(p.name, p.email, p.phone))
-    stmt.finalize(); */
+    stmt.finalize();
+}
 
-
+appDb.serialize(function () {
+    appDb.run('CREATE TABLE IF NOT EXISTS participant (id INTEGER PRIMARY KEY AUTOINCREMENT, name string, email string, phone string)');
+    // populateDb() when ou need to repopulate the table 
 }); 
 
 

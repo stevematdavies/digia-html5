@@ -1,31 +1,34 @@
-import axios from 'axios';
 import React from 'react';
+import { fetchParticipants } from '../../routing/requests';
 import ParticipantsTable from './ParticipantsTable';
+
 
 class ParticipantsView extends React.Component {
 
     constructor(){
         super();
         this.state = { participants: [] }
+        this.getAllParticipants = this.getAllParticipants.bind(this);
+    }
+
+    getAllParticipants(){
+        fetchParticipants()
+        .then(result => {
+            this.setState({participants: result.data});
+        })
     }
 
     componentDidMount(){
-        axios.get('api/participants')
-            .then(result => {
-                this.setState({
-                    participants: result.data
-                })
-            })
+       this.getAllParticipants();
     }
 
     render() {
         return (
             <div className="participants-view">
                 <div className="participants-view__heading">List of participants</div> 
-                <ParticipantsTable participants={this.state.participants} />
+                <ParticipantsTable participants={this.state.participants} actionUpdateCallback={this.getAllParticipants}/>
             </div>
         );
     }
 }
-
 export default ParticipantsView;

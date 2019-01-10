@@ -1,22 +1,22 @@
 import React from 'react';
 import { RIEInput } from 'riek';
-import axios from 'axios';
 import _ from 'lodash'
-
+import { fetchParticipants, addParticipant, removeParticipant } from '../../routing/requests';
 
 class ParticipantsTable extends React.Component {
 
 
+    participants = [];
+
     constructor(){
         super();
+        this.state = { participants: [] }
         this.handleEditable = this.handleEditable.bind(this);
     }
 
+    
     handleEditable(item) {
-        const key = _.keys(item)[0];
-        const val = _.toString(_.values(item)[0]);
-        axios.put(`api/participants/participant/${key}/${val}`)
-      
+     
     }
 
     addNewParticipant(){
@@ -25,17 +25,17 @@ class ParticipantsTable extends React.Component {
             email: 'anewp@somewhere.new',
             phone: '55512345'
         };
-        axios.post('api/participants/', { newParticipant })
-            .then(res => {
-                console.log(res);
-            });
+        addParticipant(newParticipant)
+            .then(result => {
+                this.props.actionUpdateCallback()
+            })
     }
 
     deleteParticipant(id) {
-        axios.delete(`api/participants/${id}`)
-            .then(res => {
-                console.log(res);
-            });
+        removeParticipant(id)
+            .then(result => {
+               this.props.actionUpdateCallback()
+            })
     }
 
     getRowElements() {
@@ -99,5 +99,6 @@ class ParticipantsTable extends React.Component {
         )
     } 
 }
+
 
 export default ParticipantsTable;
