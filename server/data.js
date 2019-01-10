@@ -1,49 +1,30 @@
-const random = require('random');
-const randomId = require('random-id');
-const rdata = require('./rdata.json')
-
-const participantsLength = 20;
-
-const genRandomId = () => {
-    const len = 6;
-    const pat = 'aA0'
-    return randomId(len, pat);
-}
-
-const genRandomPhone = () => {
-    const len = 8;
-    const pat = '00000000'
-    return randomId(len, pat);
-}
-
-const genRandomEmailForName = (name) => {
-    const rEmailOndex = random.int(min=0, max=rdata.emails.length -1);
-    return name.toLowerCase().split(' ').join('.') + rdata.emails[rEmailOndex];
-}
-
-const genRandomName = () => {
-    const firstRandomIndex = random.int(min=0, max=rdata.names.length -1);
-    const lastRandomIndex = random.int(min=0, max=rdata.names.length -1);
-    return rdata.names[firstRandomIndex].first + ' ' + rdata.names[lastRandomIndex].last;
-}
-
-const generateParticipant = () => {
-    const name = genRandomName();
-    const email = genRandomEmailForName(name);
-    const id = genRandomId();
-    const phone = genRandomPhone();
-    return { id, email, name, phone }
-};
+const participants = require('./rdata.json');
+const sqlite3 = require('sqlite3').verbose();
+const path = require('path');
+const appDb = new sqlite3.Database(path.resolve(__dirname, 'app.db'));
+const _ = require('lodash');
 
 
-const generateRandomParticipants = () => {
-    let participants = [];
-    for (let i=0; i < participantsLength; i++) {
-        participants.push(generateParticipant())
-    }
-    return participants;
+appDb.serialize(function () {
+
+    appDb.run('CREATE TABLE IF NOT EXISTS participant (id INTEGER PRIMARY KEY AUTOINCREMENT, name string, email string, phone string)');
+    
+   /*  let stmt = appDb.prepare('INSERT INTO participant (name, email, phone) VALUES (?, ?, ?)');
+    _.each(participants, (p) => stmt.run(p.name, p.email, p.phone))
+    stmt.finalize(); */
+
+
+}); 
+
+
+const fetchParticipants = (res) => {
+    appDb.all('SELECT * FROM participant', [], (err, rows) => {
+        if (err) { res.send(err) }
+        else { return res.json([...rows]) }
+    })
 }
 
 module.exports = {
-    generateRandomParticipants
-}
+    fetchParticipants
+};
+
