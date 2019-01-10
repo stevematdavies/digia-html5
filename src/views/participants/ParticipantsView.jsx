@@ -21,8 +21,8 @@ class ParticipantsView extends React.Component {
     render() {
         return (
             <div className="participants-view">
-                <h2 className="participants-view__heading">List of participants</h2> 
-                 <ParticipantsTable participants={this.state.participants} />
+                <div className="participants-view__heading">List of participants</div> 
+                <ParticipantsTable participants={this.state.participants} />
             </div>
         );
     }

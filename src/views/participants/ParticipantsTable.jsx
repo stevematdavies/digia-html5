@@ -5,29 +5,35 @@ class ParticipantsTable extends React.Component {
     getRowElements() {
         return this.props.participants
             .map(participant => (
-                <div key={participant.id} className="partable__tr">
-                      <div className="partable__td">{participant.name}</div>
-                      <div className="partable__td">{participant.email}</div>
-                      <div className="partable__td">{participant.phone}</div>
+                <div key={participant.id} className="partable row" role="rowgroup">
+                    <div className="partable__row" role="cell">{ participant.name } </div>
+                    <div className="partable__row" role="cell">{ participant.email }</div>
+                    <div className="partable__row" role="cell">{ participant.phone} </div>
+                    <div className="partable__row contains" role="cell"> 
+                        <span className="partable__row_icons">
+                            <div className="partable__row_icon"><i className="fi fi-pencil"></i></div>
+                            <div className="partable__row_icon"><i className="fi fi-trash"></i></div>
+                        </span>
+                    </div>
                 </div>
             ))
     }
 
     render() {
         return (
-            <div className="partable">
-                <div className="partable__heading">
-                    <div className="partable__headingth">Full name</div>
-                    <div className="partable__heading--th">Email address</div>
-                    <div className="partable__heading--th">Phone number</div>
-                    <div className="partable__heading--th">
-                        <div className="partable__add-new-button">Add new</div>
-                    </div>
+            <div className="partable-container" role="table">
+                
+                <div className="partable table-header" role="rowgroup">
+                    <div className="partable__row column-header" role="columnheader">Full name</div>
+                    <div className="partable__row column-header" role="columnheader">E-mail address</div>
+                    <div className="partable__row column-header" role="columnheader">Phone</div>
                 </div>
-               <div className="partable__body">
-                    {  this.getRowElements() }
-                </div>
-            </div> 
+
+                {this.getRowElements()}
+
+
+            </div>
+                                
         )
     } 
 }

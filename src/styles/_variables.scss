@@ -1,0 +1,22 @@
+$color-primary: #bdc3c7;
+$color-secondary: #e6e6e6;
+$color-tertiary: #e6e6e6;
+$color-text: #7f8c8d;
+$color-text-light: #cad4d4;
+$color-border-light: rgba(gray,0.3);
+
+.borderless {
+    border: none !important;
+}
+
+.app-button {
+    height: 4rem;
+    width: 12rem;
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: $color-text;
+    background-color: $color-tertiary;
+    cursor: pointer;
+}

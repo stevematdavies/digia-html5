@@ -1,7 +1,10 @@
+@import './styles/foundation-icons/foundation-icons.css';
+@import './styles/variables';
 @import './styles/app';
 @import './styles/header';
 @import './styles/participants';
 @import './styles/partable';
+
 
 *,
 *:before,
@@ -18,4 +21,5 @@ body {
   box-sizing: border-box;
   margin:0;
   padding: 0;
+  background-color: $color-secondary; 
 }
