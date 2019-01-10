@@ -19,6 +19,25 @@ class ParticipantsTable extends React.Component {
       
     }
 
+    addNewParticipant(){
+        let newParticipant = {
+            name: 'A New Person',
+            email: 'anewp@somewhere.new',
+            phone: '55512345'
+        };
+        axios.post('api/participants/', { newParticipant })
+            .then(res => {
+                console.log(res);
+            });
+    }
+
+    deleteParticipant(id) {
+        axios.delete(`api/participants/${id}`)
+            .then(res => {
+                console.log(res);
+            });
+    }
+
     getRowElements() {
         return this.props.participants
             .map(participant => (
@@ -54,10 +73,10 @@ class ParticipantsTable extends React.Component {
                     <div className="partable__row contains" role="cell"> 
                         <span className="partable__row_icons">
                             <div className="partable__row_icon"><i className="fi fi-pencil"></i></div>
-                            <div className="partable__row_icon"><i className="fi fi-trash"></i></div>
+                            <div className="partable__row_icon" onClick={() => this.deleteParticipant(participant.id)}><i className="fi fi-trash"></i></div>
                         </span>
                     </div>
-
+    
                 </div>
             ))
     }

@@ -1,4 +1,5 @@
 const data = require('./data');
+const bodyParser = require('body-parser');
 
 module.exports = (router) => {
     
@@ -6,15 +7,17 @@ module.exports = (router) => {
         return res.send('api heard!')
     });
     
-    router.get('/participants', (req,res)=>{
+    router.get('/participants', (req, res)=>{
         data.fetchParticipants(res);
     });
 
-    router.put('/participants/participant/:k/:v', (req, res) =>{
-        const key = req.params.k;
-        const val = req.params.v;
-        console.log(key, val);
+    router.post('/participants', (req, res) => {
+        data.addNewParticipant(res, req.body.newParticipant)
     });
-    
+
+    router.delete('/participants/:id', (req, res) => {
+        data.deleteParticipant(res, req.params.id);
+    });
+
     return router;
 }

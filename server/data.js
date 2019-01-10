@@ -18,13 +18,36 @@ appDb.serialize(function () {
 
 
 const fetchParticipants = (res) => {
-    appDb.all('SELECT * FROM participant', [], (err, rows) => {
-        if (err) { res.send(err) }
-        else { return res.json([...rows]) }
+    const sql = 'SELECT * FROM participant';
+    appDb.all(sql, [], (err, rows) => {
+        if (err) { 
+            res.send(err) 
+        }
+        else { 
+            return res.json([...rows])
+         }
     })
 }
 
+const addNewParticipant = (res, participant) => {
+    const sql = 'INSERT INTO participant (name, email, phone) VALUES (?, ?, ?)';
+    let stmt = appDb.prepare(sql);
+    stmt.run(participant.name, participant.email, participant.phone);
+    stmt.finalize();
+    res.send({ "newParticipant" : participant })
+}
+
+const deleteParticipant = (res, participantId) => {
+    const sql = 'DELETE from participant where id= (?)'
+    let stmt = appDb.prepare(sql);
+    stmt.run(participantId);
+    stmt.finalize();
+    res.send("participant successfully deleted!")
+}
+
 module.exports = {
-    fetchParticipants
+    fetchParticipants,
+    addNewParticipant,
+    deleteParticipant
 };
 
