@@ -1,7 +1,7 @@
 import React from 'react';
 import { RIEInput } from 'riek';
 import _ from 'lodash'
-import { fetchParticipants, addParticipant, removeParticipant } from '../../routing/requests';
+import { addParticipant, removeParticipant } from '../../routing/requests';
 
 class ParticipantsTable extends React.Component {
 
