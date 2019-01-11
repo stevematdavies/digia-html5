@@ -52,7 +52,6 @@ class ParticipantsTable extends React.Component {
             editable: !orig });
     }
 
-    
     deleteParticipant(e, id) {
         e.preventDefault();
         if (!this.state.editable) {
