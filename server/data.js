@@ -1,66 +1,42 @@
-const participants = require('./rdata.json');
-const sqlite3 = require('sqlite3').verbose();
-const path = require('path');
-const appDb = new sqlite3.Database(path.resolve(__dirname, 'app.db'));
+const initialize = require('./database'); 
 const _ = require('lodash');
+const QUERIES = require('./queries');
 
+const appDb = initialize();
 
-const migrate = () => {
-    let stmt = appDb.prepare('INSERT INTO participant (name, email, phone) VALUES (?, ?, ?)');
-    _.each(participants, (p) => stmt.run(p.name, p.email, p.phone))
-    stmt.finalize();
-}
-
-appDb.serialize(function () {
-    appDb.run(`CREATE TABLE IF NOT EXISTS participant (
-                id INTEGER PRIMARY KEY AUTOINCREMENT, 
-                name string, 
-                email string, 
-                phone string, 
-                timestamp DATETIME DEFAULT CURRENT_TIMESTAMP)`
-            );
-    //migrate();
-}); 
+const resultPayload = (statusCode, message) => ({statusCode, message})
 
 const fetchParticipants = (res, sortOptions) => {
     const {col, dir} = sortOptions;
     const sql = `SELECT * FROM participant ORDER BY ${col} ${dir}`;
     appDb.all(sql, [], (err, rows) => {
         if (err) { 
-            res.send(err) 
-        }
-        else { 
+            res.send(resultPayload(500, err.message)) 
+        } else { 
             return res.json([...rows])
-         }
+        }
     })
 }
 
 const addNewParticipant = (res, participant) => {
-    const sql = 'INSERT INTO participant (name, email, phone) VALUES (?, ?, ?)';
-    let stmt = appDb.prepare(sql);
+    let stmt = appDb.prepare(QUERIES.add_participant);
     stmt.run(participant.name, participant.email, participant.phone);
     stmt.finalize();
-    res.send({ "newParticipant" : participant })
+    res.send(resultPayload(200,  "Participant successfully added!"))
 }
 
 const updateParticipant = (res, participant) => {
-    const sql = `UPDATE participant SET
-                 name = (?),
-                 email = (?),
-                 phone = (?)
-                 WHERE id = (?)`;
-    let stmt = appDb.prepare(sql);
+    let stmt = appDb.prepare(QUERIES.update_participant);
     stmt.run(participant.name, participant.email, participant.phone, participant.id);
     stmt.finalize();
-    res.send({ "updatedParticipant" : participant })
+    res.send({ statusCode: 200, message: "Participant successfully updated!"})
 }
 
 const deleteParticipant = (res, participantId) => {
-    const sql = 'DELETE from participant where id= (?)'
-    let stmt = appDb.prepare(sql);
+    let stmt = appDb.prepare(QUERIES.delete_participant);
     stmt.run(participantId);
     stmt.finalize();
-    res.send("participant successfully deleted!")
+    res.send(resultPayload(200,  "Participant successfully removed!"))
 }
 
 module.exports = {
