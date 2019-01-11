@@ -2,6 +2,7 @@ import React from 'react';
 import { fetchParticipants } from '../../routing/requests';
 import ParticipantsTable from './ParticipantsTable';
 import NewParticipantForm from '../new-participant-form/NewParticipantForm';
+import { ORDER_TYPES } from '../../config/vars';
 
 
 class ParticipantsView extends React.Component {
@@ -12,8 +13,7 @@ class ParticipantsView extends React.Component {
         this.getAllParticipants = this.getAllParticipants.bind(this);
     }
 
-    getAllParticipants(){
-        const sortOptions = { orderby: 'name', orderdir: 'ASC'}
+    getAllParticipants(sortOptions) {
         fetchParticipants(sortOptions)
         .then(result => {
             this.setState({participants: result.data});
@@ -21,7 +21,7 @@ class ParticipantsView extends React.Component {
     }
 
     componentDidMount(){
-       this.getAllParticipants();
+       this.getAllParticipants(ORDER_TYPES.nameAsc);
     }
 
     render() {

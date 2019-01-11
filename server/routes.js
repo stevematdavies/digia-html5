@@ -6,8 +6,7 @@ module.exports = (router) => {
         return res.send('api heard!')
     });
     
-    router.get('/participants/:orderby/:orderdir', (req, res)=>{
-
+    router.get('/participants/:col/:dir', (req, res)=>{
         data.fetchParticipants(res, {...req.params});
     });
 

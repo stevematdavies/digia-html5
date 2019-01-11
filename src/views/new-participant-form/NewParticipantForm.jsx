@@ -1,6 +1,7 @@
 import React from 'react';
 import SingleInput from '../../components/single-input/SingleInput';
 import { addParticipant } from '../../routing/requests';
+import { ORDER_TYPES } from '../../config/vars';
 
 class NewParticipantForm extends React.Component {
 
@@ -38,7 +39,7 @@ class NewParticipantForm extends React.Component {
         e.preventDefault();
         addParticipant({...this.state})
             .then(() =>{
-                this.props.formSubmittedCallback();
+                this.props.formSubmittedCallback(ORDER_TYPES.timeDes);
                 this.clearForm();
             })
     }

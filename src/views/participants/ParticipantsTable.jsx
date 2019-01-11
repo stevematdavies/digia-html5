@@ -1,6 +1,7 @@
 import React from 'react';
 import { removeParticipant, updateParticipant } from '../../routing/requests';
 import SingleInput from '../../components/single-input/SingleInput';
+import { ORDER_TYPES } from '../../config/vars';
 
 class ParticipantsTable extends React.Component {
 
@@ -27,12 +28,17 @@ class ParticipantsTable extends React.Component {
         });
     }
 
+
+    doCallbackWithOptions() {
+        this.props.actionUpdateCallback(ORDER_TYPES.nameAsc)
+    }
+
     updateParticipant(e){
         e.preventDefault();
         updateParticipant(this.state.participant)
             .then(() => {
                 this.setState({ row: null, editable: false });
-                this.props.actionUpdateCallback()
+                this.doCallbackWithOptions();   
             })
     }
 
@@ -49,7 +55,7 @@ class ParticipantsTable extends React.Component {
         e.preventDefault();
         if (!this.state.editable) {
             removeParticipant(id)
-                .then(() => { this.props.actionUpdateCallback() }) 
+                .then(() => { this.doCallbackWithOptions() }) 
         } 
     }
 
