@@ -1,7 +1,7 @@
 import React from 'react';
 import { fetchParticipants } from '../../routing/requests';
 import ParticipantsTable from './ParticipantsTable';
-import NewParticipantView from '../new-participant/NewParticipantView';
+import NewParticipantForm from '../new-participant-form/NewParticipantForm';
 
 
 class ParticipantsView extends React.Component {
@@ -27,7 +27,7 @@ class ParticipantsView extends React.Component {
         return (
             <div className="participants-view">
                 <div className="participants-view__heading">List of participants</div> 
-                <NewParticipantView />
+                <NewParticipantForm formSubmittedCallback={this.getAllParticipants}/>
                 <ParticipantsTable participants={this.state.participants} actionUpdateCallback={this.getAllParticipants}/>
             </div>
         );

@@ -1,5 +1,4 @@
 const data = require('./data');
-const bodyParser = require('body-parser');
 
 module.exports = (router) => {
     
@@ -12,7 +11,7 @@ module.exports = (router) => {
     });
 
     router.post('/participants', (req, res) => {
-        data.addNewParticipant(res, req.body.newParticipant)
+        data.addNewParticipant(res, req.body.participant)
     });
 
     router.delete('/participants/:id', (req, res) => {

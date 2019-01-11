@@ -12,6 +12,7 @@
     "http-proxy-middleware": "^0.19.1",
     "lodash": "^4.17.11",
     "node-sass": "^4.11.0",
+    "prop-types": "^15.6.2",
     "random": "^2.0.13",
     "random-id": "^1.0.3",
     "react": "^16.7.0",

@@ -1,7 +1,7 @@
 import React from 'react';
 import { RIEInput } from 'riek';
 import _ from 'lodash'
-import { addParticipant, removeParticipant } from '../../routing/requests';
+import { removeParticipant } from '../../routing/requests';
 
 class ParticipantsTable extends React.Component {
 
@@ -17,18 +17,6 @@ class ParticipantsTable extends React.Component {
     
     handleEditable(item) {
      
-    }
-
-    addNewParticipant(){
-        let newParticipant = {
-            name: 'A New Person',
-            email: 'anewp@somewhere.new',
-            phone: '55512345'
-        };
-        addParticipant(newParticipant)
-            .then(result => {
-                this.props.actionUpdateCallback()
-            })
     }
 
     deleteParticipant(id) {
