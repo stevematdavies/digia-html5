@@ -5,18 +5,21 @@ import { ORDER_TYPES } from '../../config/vars';
 
 class ParticipantsTable extends React.Component {
 
-
-    participants = [];
-
     constructor(){
         super();
-        this.state = { participants: [], row: null, editable: false, participant: {} };
+        this.state = { 
+            participants: [], 
+            row: null, 
+            editable: false, 
+            participant: {},  
+            sorting: ORDER_TYPES.nameAsc
+        };
         this.handleEditable = this.handleEditable.bind(this);
         this.toggleEditMode = this.toggleEditMode.bind(this);
         this.updateParticipant = this.updateParticipant.bind(this);
+        this.toggleSort = this.toggleSort.bind(this);
     }
 
-    
     handleEditable(e, participant) {
         const key = e.target.name;
         const value = e.target.value;
@@ -28,9 +31,8 @@ class ParticipantsTable extends React.Component {
         });
     }
 
-
     doCallbackWithOptions() {
-        this.props.actionUpdateCallback(ORDER_TYPES.nameAsc)
+        this.props.actionUpdateCallback(this.state.sorting)
     }
 
     updateParticipant(e){
@@ -57,6 +59,14 @@ class ParticipantsTable extends React.Component {
             removeParticipant(id)
                 .then(() => { this.doCallbackWithOptions() }) 
         } 
+    }
+
+    toggleSort(col) {
+        const toggle = this.state.sorting.dir === 'ASC' ? 'DESC' : 'ASC'
+        this.setState({
+            sorting: {col, dir: toggle}
+        });
+        this.doCallbackWithOptions();
     }
 
     getRowElement(name, value, type, callback, condition) {
@@ -105,14 +115,33 @@ class ParticipantsTable extends React.Component {
             )
     }
 
+
+    getSortable(col){
+        return this.state.sorting.dir === 'ASC'
+            ? (<div className="sorting-button" onClick={() => this.toggleSort(col)}><i className="fi fi-arrow-down"></i></div>)
+            : (<div className="sorting-button" onClick={() => this.toggleSort(col)}><i className="fi fi-arrow-up"></i></div>);
+    }
+
     render() {
         return (
             <div className="partable-container" role="table">
                 
                 <div className="partable table-header" role="rowgroup">
-                    <div className="partable__row column-header" role="columnheader">Full name</div>
-                    <div className="partable__row column-header" role="columnheader">E-mail address</div>
-                    <div className="partable__row column-header" role="columnheader">Phone</div>
+                    <div className="partable__row column-header" role="columnheader">
+                        <span className="column-header-text">
+                            Full name {this.getSortable('name')}
+                        </span>
+                    </div>
+                    <div className="partable__row column-header" role="columnheader">
+                        <span className="column-header-text">
+                            E-mail address {this.getSortable('email')}
+                        </span>
+                    </div>
+                    <div className="partable__row column-header" role="columnheader">
+                        <span className="column-header-text">   
+                            Phone {this.getSortable('phone')}
+                        </span>
+                    </div>
                 </div>
 
                 {this.getRowElements()}

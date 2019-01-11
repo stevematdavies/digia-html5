@@ -30,7 +30,6 @@ const fetchParticipants = (res, sortOptions) => {
             res.send(err) 
         }
         else { 
-            console.log(rows);
             return res.json([...rows])
          }
     })
