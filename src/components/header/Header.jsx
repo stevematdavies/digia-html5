@@ -7,7 +7,7 @@ class Header extends React.Component {
             <div className="header">
                 <div className="header__brand">
                     <Logo />
-                    <span className="header__brand-text">Alord Software</span>
+                    <span className="header__brand-text">Word Software</span>
                 </div>
                <div className="header__content"></div>
             </div>

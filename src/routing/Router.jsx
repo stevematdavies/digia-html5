@@ -5,7 +5,7 @@ import ParticipantsView from '../views/participants/ParticipantsView';
 const Router = () => (
   <Switch>
     <Route exact path="/participants" component={ParticipantsView} />
-    <Route render={() => <Redirect to="/participants"/>}/>
+    <Route exact path = '' render={() => <Redirect to="/participants"/>}/>
   </Switch>
 )
 
