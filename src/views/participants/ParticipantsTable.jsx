@@ -44,6 +44,13 @@ class ParticipantsTable extends React.Component {
             })
     }
 
+    closeEditMode(e) {
+        e.preventDefault();
+        this.setState({ 
+            row: null, 
+            editable: false });
+    }
+
     toggleEditMode(e, id) {
         e.preventDefault();
         let orig = this.state.editable 
@@ -81,15 +88,24 @@ class ParticipantsTable extends React.Component {
 
     getRowActionElement(condition, id){
         return condition
-            ?  (<div className="partable__row_icon" onClick={(e) =>this.updateParticipant(e)}><i className="fi fi-save"></i></div>)
-            :  (<div className="partable__row_icon" onClick={(e) =>this.toggleEditMode(e,id)}><i className="fi fi-pencil"></i></div>);
+            ?  (
+                <div className="partable__row_action-button-group wide">
+                    <div className="app-button secondary" onClick={(e) =>this.closeEditMode(e)}>Cancel</div>
+                    <button className="app-button primary" onClick={(e) =>this.updateParticipant(e)}>Save</button>    
+                </div>)
+            
+            :  (
+                <div className="partable__row_action-button-group">
+                    <div className="partable__row_icon" onClick={(e) =>this.toggleEditMode(e,id)}><i className="fi fi-pencil"></i></div>
+                    <div className="partable__row_icon" onClick={(e) => this.deleteParticipant(e, id)}><i className="fi fi-trash"></i></div>
+                </div> );
     }
 
     getRowElements() {
         return this.props.participants
             .map(participant => (
 
-                    <div key={participant.id} className="partable row" role="rowgroup">
+                    <form key={participant.id} className="partable row" role="rowgroup" onSubmit={(e) => this.updateParticipant(e)}>
         
                         <div className='partable__row' role="cell">
                             { this.getRowElement('name', participant.name, 'text', (e) => this.handleEditable(e, participant), participant.id === this.state.row) }
@@ -106,11 +122,10 @@ class ParticipantsTable extends React.Component {
                         <div className="partable__row contains" role="cell"> 
                             <span className="partable__row_icons">
                                 { this.getRowActionElement(participant.id === this.state.row, participant.id) }
-                                <div className="partable__row_icon" onClick={(e) => this.deleteParticipant(e, participant.id)}><i className="fi fi-trash"></i></div>
                             </span>
                         </div>
     
-                    </div>)
+                    </form>)
             )
     }
 

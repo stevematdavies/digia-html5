@@ -9,30 +9,39 @@ $color-border-light: rgba(gray,0.3);
 $color-border-lighter: rgba(rgb(196, 196, 196),0.3);
 $color-border-editing: rgba(rgb(68, 4, 4),0.3);
 
+$color-action-button-blue: #07f;
+$color-action-button-grey: #e3e6e8;
+
 .borderless {
     border: none !important;
 }
 
 .app-button {
+    background: none;
+    border: 0;
     height: 4rem;
+    -webkit-appearance:none;
     width: 12rem;
-    padding: 1rem;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     color: $color-text;
     font-size: 1.6rem;
-    border-radius: 4px;
-    background-color: $color-tertiary;
-    transition: all .2s;
+    font-weight: 500;
+    padding: 1.6rem;
+    margin: .2rem;
+    background-color: $color-action-button-grey;
+    cursor: pointer;
 
-    &:hover {
-        cursor: pointer;
-        box-shadow: .06rem .06rem 1rem $color-shadow;
-        transform: translateY(-2spx);
+    &.primary {
+        background-color: $color-action-button-blue;
+        color:white;
     }
 
-    &:active {
-        box-shadow: none;
+    &.secondary {
+        background-color: $color-action-button-grey;
+        color: $color-action-button-blue;
+        
     }
 }

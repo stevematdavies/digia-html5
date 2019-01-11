@@ -13,7 +13,7 @@ class SingleInput extends React.Component {
                     onChange={this.props.controlFunc}
                     placeholder={this.props.placeholder} 
                     contentEditable="true"
-                    required/>
+                    required="required" />
             </div>
         )
     }

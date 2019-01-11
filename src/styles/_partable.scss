@@ -52,6 +52,16 @@
             width: 30%;
         }
 
+        &_action-button-group {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+
+            &.wide {
+                transform: translateX(-9rem);
+            }
+        }
+
         &_icon{
           cursor: pointer;
         }

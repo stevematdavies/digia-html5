@@ -50,7 +50,7 @@ class NewParticipantForm extends React.Component {
 
     render() {
         return (
-            <form className="new-participant" action="" onSubmit={this.handleFormSubmit}>
+            <form className="new-participant" onSubmit={this.handleFormSubmit}>
                 
                 <div className="new-participant__form-item">
                     <SingleInput
