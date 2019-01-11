@@ -12,5 +12,17 @@
         border: none;
         border: 1px solid $color-border-lighter;
     }
+
+    &.inline {
+        & > input[type="text"],
+            input[type="email"],
+            input[type="tel"] {
+                border: 1px dotted $color-border-editing;
+                font-size: 1.4rem;
+                font-weight: 400;
+                color:$color-text-editing;
+            }
+           
+    }
 }
 

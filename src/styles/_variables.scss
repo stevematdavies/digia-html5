@@ -2,10 +2,12 @@ $color-primary: #bdc3c7;
 $color-secondary: #e6e6e6;
 $color-tertiary: #e6e6e6;
 $color-text: #7f8c8d;
+$color-text-editing: #656868;
 $color-shadow: #7d7e7e;
 $color-text-light: #cad4d4;
 $color-border-light: rgba(gray,0.3);
 $color-border-lighter: rgba(rgb(196, 196, 196),0.3);
+$color-border-editing: rgba(rgb(68, 4, 4),0.3);
 
 .borderless {
     border: none !important;

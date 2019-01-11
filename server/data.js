@@ -13,7 +13,7 @@ const populateDb = () => {
 
 appDb.serialize(function () {
     appDb.run('CREATE TABLE IF NOT EXISTS participant (id INTEGER PRIMARY KEY AUTOINCREMENT, name string, email string, phone string)');
-    // populateDb() when ou need to repopulate the table 
+    //populateDb();
 }); 
 
 

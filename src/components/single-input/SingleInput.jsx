@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 class SingleInput extends React.Component {
     render(){
         return(
-            <div className="single-input">
+            <div className="single-input" className={`single-input ${this.props.class}`}>
                 <input
                     name={this.props.name}
                     type={this.props.inputType}
