@@ -13,7 +13,8 @@ class ParticipantsView extends React.Component {
     }
 
     getAllParticipants(){
-        fetchParticipants()
+        const sortOptions = { orderby: 'name', orderdir: 'ASC'}
+        fetchParticipants(sortOptions)
         .then(result => {
             this.setState({participants: result.data});
         })

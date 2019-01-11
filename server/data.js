@@ -17,8 +17,10 @@ appDb.serialize(function () {
 }); 
 
 
-const fetchParticipants = (res) => {
-    const sql = 'SELECT * FROM participant';
+const fetchParticipants = (res, sortOptions) => {
+
+    const {orderby, orderdir} = sortOptions;
+    const sql = `SELECT * FROM participant ORDER BY ${orderby} ${orderdir}`;
     appDb.all(sql, [], (err, rows) => {
         if (err) { 
             res.send(err) 
