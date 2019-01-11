@@ -37,6 +37,18 @@ const addNewParticipant = (res, participant) => {
     res.send({ "newParticipant" : participant })
 }
 
+const updateParticipant = (res, participant) => {
+    const sql = `UPDATE participant SET
+                 name = (?),
+                 email = (?),
+                 phone = (?)
+                 WHERE id = (?)`;
+    let stmt = appDb.prepare(sql);
+    stmt.run(participant.name, participant.email, participant.phone, participant.id);
+    stmt.finalize();
+    res.send({ "updatedParticipant" : participant })
+}
+
 const deleteParticipant = (res, participantId) => {
     const sql = 'DELETE from participant where id= (?)'
     let stmt = appDb.prepare(sql);
@@ -48,6 +60,7 @@ const deleteParticipant = (res, participantId) => {
 module.exports = {
     fetchParticipants,
     addNewParticipant,
-    deleteParticipant
+    deleteParticipant,
+    updateParticipant
 };
 

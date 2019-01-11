@@ -1,6 +1,5 @@
 import React from 'react';
-import _ from 'lodash'
-import { removeParticipant } from '../../routing/requests';
+import { removeParticipant, updateParticipant } from '../../routing/requests';
 import SingleInput from '../../components/single-input/SingleInput';
 
 class ParticipantsTable extends React.Component {
@@ -10,23 +9,31 @@ class ParticipantsTable extends React.Component {
 
     constructor(){
         super();
-        this.state = { participants: [], row: null, editable: false };
+        this.state = { participants: [], row: null, editable: false, participant: {} };
         this.handleEditable = this.handleEditable.bind(this);
         this.toggleEditMode = this.toggleEditMode.bind(this);
         this.updateParticipant = this.updateParticipant.bind(this);
     }
 
     
-    handleEditable(item) {
-        
+    handleEditable(e, participant) {
+        const key = e.target.name;
+        const value = e.target.value;
+        this.setState({
+            participant: {
+                ...participant,
+                [key]:value
+            }
+        });
     }
 
     updateParticipant(e){
         e.preventDefault();
-        this.setState({
-            row: null,
-            editable: false
-        })
+        updateParticipant(this.state.participant)
+            .then(() => {
+                this.setState({ row: null, editable: false });
+                this.props.actionUpdateCallback()
+            })
     }
 
     toggleEditMode(e, id) {
@@ -40,19 +47,20 @@ class ParticipantsTable extends React.Component {
     
     deleteParticipant(e, id) {
         e.preventDefault();
-        removeParticipant(id)
-            .then(result => { this.props.actionUpdateCallback() }) 
+        if (!this.state.editable) {
+            removeParticipant(id)
+                .then(() => { this.props.actionUpdateCallback() }) 
+        } 
     }
 
-    getRowElement(name, value, type, callback, placeholder, condition) {
+    getRowElement(name, value, type, callback, condition) {
         return condition
             ? ( <SingleInput 
                     name={name} 
                     class="inline"
                     inputType={type} 
-                    content={value} 
                     controlFunc={callback} 
-                    placeholder={placeholder} />)
+                    placeholder={value} />)
             : value;
     }
 
@@ -69,15 +77,15 @@ class ParticipantsTable extends React.Component {
                     <div key={participant.id} className="partable row" role="rowgroup">
         
                         <div className='partable__row' role="cell">
-                            { this.getRowElement('name', participant.name, 'text', this.handleEditable,'Full name', participant.id === this.state.row) }
+                            { this.getRowElement('name', participant.name, 'text', (e) => this.handleEditable(e, participant), participant.id === this.state.row) }
                         </div>
 
                         <div className="partable__row" role="cell">
-                            { this.getRowElement('email', participant.email, 'email', this.handleEditable,'E-mail address', participant.id === this.state.row) }   
+                            { this.getRowElement('email', participant.email, 'email',(e) => this.handleEditable(e, participant), participant.id === this.state.row) }   
                         </div>
 
                         <div className="partable__row" role="cell">
-                            { this.getRowElement('phone', participant.phone, 'tel', this.handleEditable,'Phone', participant.id === this.state.row) }   
+                            { this.getRowElement('phone', participant.phone, 'tel', (e) => this.handleEditable(e, participant), participant.id === this.state.row) }   
                         </div>
 
                         <div className="partable__row contains" role="cell"> 

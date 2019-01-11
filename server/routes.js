@@ -14,6 +14,10 @@ module.exports = (router) => {
         data.addNewParticipant(res, req.body.participant)
     });
 
+    router.put('/participants', (req, res) => {
+        data.updateParticipant(res, req.body.participant)
+    });
+
     router.delete('/participants/:id', (req, res) => {
         data.deleteParticipant(res, req.params.id);
     });
