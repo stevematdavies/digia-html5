@@ -8252,6 +8252,14 @@ react-scripts@2.1.3:
   optionalDependencies:
     fsevents "1.2.4"
 
+react-validate-form@^1.0.6:
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/react-validate-form/-/react-validate-form-1.0.6.tgz#1a1cc278e4c774a31c319961c55ba2523b029aab"
+  integrity sha512-JitYs9Z0LDsE0BLk4Z1vzg6M70NVECOOndndxA/i/NGr0bc5wNQfSAa1M5Grlk5A0/1eNRg+cEp4z/IJ23MDsQ==
+  dependencies:
+    lodash "^4.17.4"
+    rimraf "^2.6.0"
+
 react@^16.7.0:
   version "16.7.0"
   resolved "https://registry.yarnpkg.com/react/-/react-16.7.0.tgz#b674ec396b0a5715873b350446f7ea0802ab6381"
@@ -8631,7 +8639,7 @@ rgba-regex@^1.0.0:
   resolved "https://registry.yarnpkg.com/rgba-regex/-/rgba-regex-1.0.0.tgz#43374e2e2ca0968b0ef1523460b7d730ff22eeb3"
   integrity sha1-QzdOLiyglosO8VI0YLfXMP8i7rM=
 
-rimraf@2:
+rimraf@2, rimraf@^2.6.0:
   version "2.6.3"
   resolved "https://registry.yarnpkg.com/rimraf/-/rimraf-2.6.3.tgz#b2d104fe0d8fb27cf9e0a1cda8262dd3833c6cab"
   integrity sha512-mwqeW5XsA2qAejG46gYdENaxXjx9onRNCfn7L0duuP4hCuTIi/QO7PDK07KJfp1d+izWPrzEJDcSqBa0OZQriA==
@@ -9886,6 +9894,11 @@ validate-npm-package-license@^3.0.1:
   dependencies:
     spdx-correct "^3.0.0"
     spdx-expression-parse "^3.0.0"
+
+validator@^10.10.0:
+  version "10.10.0"
+  resolved "https://registry.yarnpkg.com/validator/-/validator-10.10.0.tgz#a69ac298149f063a44361cb52182edb52dab59a4"
+  integrity sha512-DyZyLJlMXM3CGdVaVHE/EDzCagMRoPI3mmGdxxNQbqkGqh56+M3d1i0ZAWd69En8U21DHbPTn12aOdhO+hfm5w==
 
 value-equal@^0.4.0:
   version "0.4.0"
