@@ -28,7 +28,7 @@ const migrate = () => {
 
 const initialize = () => {
     createTable();
-    /* migrate();  Uncomment only if you need to rebuild the table! */ 
+    //migrate();  //Uncomment only if you need to rebuild the table! */ 
     return getDb();
 }
 

@@ -44,6 +44,7 @@ class ParticipantsEditableTableRow extends React.Component {
     }
 
     onSave(e, participant){
+        e.preventDefault();
         e.persist();
         let updatedParticipant = {
             ...participant,
@@ -60,7 +61,7 @@ class ParticipantsEditableTableRow extends React.Component {
     render(){
         const participant = this.props.participant;
             return (
-                <div className="partable__row">
+                <form className="partable__row" onSubmit={(e)=> this.onSave(e, participant)}>
                     <div className='partable__cell' role="cell">
                         <input
                             className='single-input'
@@ -68,7 +69,7 @@ class ParticipantsEditableTableRow extends React.Component {
                             type='text'
                             value={this.state.updateParticipant.name}
                             onChange={this.handleOnChange}
-                            required />
+                            required={true}/>
                     </div>
 
                     <div className="partable__cell" role="cell">
@@ -86,6 +87,8 @@ class ParticipantsEditableTableRow extends React.Component {
                             className='single-input'
                             name='phone'
                             type='tel'
+                            pattern="[0-9]{3}-[0-9]{6}"
+                            title="Please ensure the format ###-######"
                             value={this.state.updateParticipant.phone}
                             onChange={this.handleOnChange}
                             required /> 
@@ -94,10 +97,10 @@ class ParticipantsEditableTableRow extends React.Component {
                     <div className="partable__cell contains" role="cell"> 
                         <div className="partable__cell--action-button-group wide">
                             <div className="app-button secondary" onClick={this.props.onCloseEdit}>Cancel</div>
-                            <button type="submit" className="app-button primary" onClick={(e)=> this.onSave(e, participant)}>Save</button>    
+                            <button type="submit" className="app-button primary">Save</button>    
                         </div>
                     </div>
-                </div>
+                </form>
             )
     }
 }
