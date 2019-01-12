@@ -5,8 +5,8 @@ import { ORDER_TYPES } from '../../config/vars';
 
 class NewParticipantForm extends React.Component {
 
-    phonePattern = "[0-9]{9}";
-    phonePatternTitle = "Please enter 9 digits (e.g.) 555123456"
+    phonePattern = "[0-9]{3}-[0-9]{6}";
+    phonePatternTitle = "Please ensure the format ###-######";
 
     constructor(props) {
         super(props);
@@ -99,17 +99,17 @@ class NewParticipantForm extends React.Component {
                         controlFunc={this.handleEmailChange} 
                         placeholder={'E-mail address'}/>
                 </div>
-
+                
                 <div className="new-participant__form-item">
                     <SingleInput
                         iref={this.newPhoneRef}
                         class={''}
                         name={'phone'} 
                         inputType={'tel'} 
-                        controlFunc={this.handlePhoneChange} 
-                        placeholder={'Phone number'}
                         pattern={this.phonePattern}
-                        patternTitle={this.phonePatternTitle}/>
+                        patternTitle={this.phonePatternTitle}
+                        controlFunc={this.handlePhoneChange} 
+                        placeholder={'Phone number'}/>
                 </div>
 
                 {this.getControlButtons()}

@@ -69,7 +69,7 @@ class ParticipantsEditableTableRow extends React.Component {
                             type='text'
                             value={this.state.updateParticipant.name}
                             onChange={this.handleOnChange}
-                            required={true}/>
+                            required />
                     </div>
 
                     <div className="partable__cell" role="cell">
