@@ -2,6 +2,8 @@
 
 ##  HTML5 / React Task for Digia application
 
+[View online here](https://word-soft.herokuapp.com/#/participants)
+
 This holds the minimal files for deploying ```word-soft``` app to the web [Heroku](https://www.heroku.com)
 
 To see the development code and for dev-server instructions,see the __master__ branch.
