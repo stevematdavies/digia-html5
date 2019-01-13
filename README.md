@@ -1,4 +1,6 @@
-# Deployment Branch
+# Wordsoft > Deployment Branch
+
+##  HTML5 / React Task for Digia application
 
 This holds the minimal files for deploying ```word-soft``` app to the web [Heroku](https://www.heroku.com)
 
@@ -22,3 +24,9 @@ If you wish to migrate (refresh the database, with the base raw participant list
 - Stop the server again as above if there are no errors
 - ```npm start```
 - navigate to [http:localhost:8080](http:localhost:8080)
+
+***
+
+<span>&copy; Stephen Davies 2019</span>
+<p>All work is my own and genuine, and done in accorfance with the specs as asked</p> 
+<a href=mailto:stevematdavies@gmail.com>Contact me </a>
