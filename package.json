@@ -27,7 +27,7 @@
     "eject": "react-scripts eject",
     "server": "node server/server.js",
     "server:migrate": "node server/server.js -m",
-    "start:e2e": "concurrently \"yarn start\" \"yarn server\""
+    "start:e2e": "concurrently \"npm run server\" \"npm start\""
   },
   "eslintConfig": {
     "extends": "react-app"

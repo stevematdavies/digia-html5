@@ -45,7 +45,7 @@ const initialize = () => {
     createTable();
     if (doMigrate) { 
         migrate();
-        console.log('migration complete, table refreshed. Please restar the server withut the mograte flag')
+        console.log('Migration complete, table refreshed. Please stop the server, and start without the migration flag')
     };
     return getDb();
 }
