@@ -1,0 +1,66 @@
+.alert {
+    position: absolute;
+    top: 8rem;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 1.2rem;
+   
+    &.warn {
+        border: 2px solid $color-warn;
+    }
+
+    &.success {
+        border: 2px solid $color-success;
+    }
+
+    &.warn &__logo {
+        background-color: $color-warn;
+    }
+
+    &.success &__logo {
+        background-color: $color-success;
+    }
+
+    &__logo {
+        transform: translateY(-3rem);
+        width: 6rem;
+        height: 6rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+    }
+
+
+    &__logo-wrapper > i {
+        color: white;
+        font-size: 3.2rem;
+    }
+  
+    &__title {
+        font-size: 2rem;
+        font-weight: 300;
+        margin-bottom: 1.6rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    &__message {
+        font-size: 1.4rem;
+        margin-bottom: 1.6rem; 
+        width:75%;
+        line-height: 2rem; 
+    }
+
+    &__action {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+}

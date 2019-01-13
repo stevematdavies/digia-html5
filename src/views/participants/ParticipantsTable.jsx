@@ -38,9 +38,10 @@ class ParticipantsTable extends React.Component {
         e.persist();
             setTimeout(()=>{
                 updateParticipant(this.state.participant)
-                .then(() => {
+                .then((data) => {
                     this.closeEditMode(e);
-                    this.doCallbackWithOptions();   
+                    this.props.onAlertCallback(data);
+                    this.doCallbackWithOptions(); 
                 })
             },100);
     }
@@ -94,12 +95,14 @@ class ParticipantsTable extends React.Component {
                             key={participant.id} 
                             participant={participant} 
                             onCloseEdit={this.closeEditMode}
-                            actionCallback={this.doCallbackWithOptions}/>)
+                            actionCallback={this.doCallbackWithOptions}
+                            onAlertCallback={this.props.onAlertCallback}/>)
                     :   (<ParticipantsNonEditableTableRow
                             key={participant.id} 
                             participant={participant} 
                             onOpenEdit={(e) => this.putInEditMode(e, participant.id)} 
-                            actionCallback={this.doCallbackWithOptions}/>));
+                            actionCallback={this.doCallbackWithOptions}
+                            onAlertCallback={this.props.onAlertCallback} />));
     }
 
     getSortable(col){

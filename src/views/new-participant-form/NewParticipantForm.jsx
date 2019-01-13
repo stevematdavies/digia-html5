@@ -1,12 +1,9 @@
 import React from 'react';
 import SingleInput from '../../components/single-input/SingleInput';
 import { addParticipant } from '../../routing/requests';
-import { ORDER_TYPES } from '../../config/vars';
+import { ORDER_TYPES, PATTERNS } from '../../config/vars';
 
 class NewParticipantForm extends React.Component {
-
-    phonePattern = "[0-9]{3}-[0-9]{6}";
-    phonePatternTitle = "Please ensure the format ###-######";
 
     constructor(props) {
         super(props);
@@ -15,6 +12,7 @@ class NewParticipantForm extends React.Component {
         this.handleEmailChange = this.handleEmailChange.bind(this);  
         this.handlePhoneChange = this.handlePhoneChange.bind(this);
         this.getControlButtons = this.getControlButtons.bind(this);
+        this.checkForAlert = this.checkForAlert.bind(this);
         this.clearForm = this.clearForm.bind(this);
         this.state = { name: '', email: '', phone: '', isInputMode: false};  
         this.createFormRefs();
@@ -31,7 +29,7 @@ class NewParticipantForm extends React.Component {
             name: '',
             email: '',
             phone: '',
-            isInputMode: false
+            isInputMode: false,
         });
         this.newNameRef.current.value = '';
         this.newEmailRef.current.value = '';
@@ -50,10 +48,15 @@ class NewParticipantForm extends React.Component {
         this.setState({isInputMode: true, phone: e.target.value})
     }
 
+    checkForAlert(data){
+        this.props.onAlertCallback(data)
+    }
+
     handleFormSubmit(e) {   
         e.preventDefault();
         addParticipant({...this.state})
-            .then(() =>{
+            .then((result) => {
+                this.checkForAlert(result);
                 this.props.formSubmittedCallback(ORDER_TYPES.timeDes);
                 this.clearForm();
             })
@@ -106,8 +109,8 @@ class NewParticipantForm extends React.Component {
                         class={''}
                         name={'phone'} 
                         inputType={'tel'} 
-                        pattern={this.phonePattern}
-                        patternTitle={this.phonePatternTitle}
+                        pattern={PATTERNS.phone}
+                        patternTitle={PATTERNS.title}
                         controlFunc={this.handlePhoneChange} 
                         placeholder={'Phone number'}/>
                 </div>

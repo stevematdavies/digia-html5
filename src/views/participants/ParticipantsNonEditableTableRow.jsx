@@ -5,13 +5,14 @@ class ParticipantsNonEditableTableRow extends React.Component {
 
     constructor(props){
         super(props);
-        this.onDelete = this.onDelete.bind(this)
+        this.onDelete = this.onDelete.bind(this);
     }
 
     onDelete(id) {
         removeParticipant(id)
-            .then(()=>{
+            .then((data)=>{
                 this.props.actionCallback();
+                this.props.onAlertCallback(data)
             })
     }
 

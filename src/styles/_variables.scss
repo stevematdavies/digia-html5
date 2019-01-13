@@ -9,6 +9,8 @@ $color-border-light: rgba(gray,0.3);
 $color-border-lighter: rgba(rgb(196, 196, 196),0.3);
 $color-border-editing: rgba(rgb(68, 4, 4),0.3);
 $color-border-editing-error: rgba(rgb(161, 7, 7),0.3);
+$color-warn: red;
+$color-success: green;
 $color-action-button-blue: #07f;
 $color-action-button-grey: #e3e6e8;
 
@@ -41,7 +43,16 @@ $color-action-button-grey: #e3e6e8;
 
     &.secondary {
         background-color: $color-action-button-grey;
-        color: $color-action-button-blue;
-        
+        color: $color-action-button-blue; 
+    }
+
+    &.warn {
+        background-color: $color-warn;
+        color:white;
+    }
+
+    &.success {
+        background-color: $color-success;
+        color:white;
     }
 }

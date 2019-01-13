@@ -22,5 +22,9 @@ module.exports = (router) => {
         data.deleteParticipant(res, req.params.id);
     });
 
+    router.get('*', (req, res) => {
+        res.send({status: 404, message: 'Page Not Found!'})
+    });
+
     return router;
 }

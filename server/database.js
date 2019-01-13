@@ -10,13 +10,16 @@ const QUERIES = require('./queries');
 const createTable = () => {
     const db = getDb();
     db.serialize(function () {
-        db.run(`CREATE TABLE IF NOT EXISTS participant (
-            id INTEGER PRIMARY KEY AUTOINCREMENT, 
-            name string, 
-            email string, 
-            phone string, 
-            timestamp DATETIME DEFAULT CURRENT_TIMESTAMP)`)
-    }); 
+        db.run(
+            `CREATE TABLE IF NOT EXISTS participant (
+                id INTEGER PRIMARY KEY AUTOINCREMENT, 
+                name string, 
+                email string, 
+                phone string, 
+                timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
+                UNIQUE(email, phone))`
+            );
+    });
 }
 
 const migrate = () => {

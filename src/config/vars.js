@@ -8,3 +8,8 @@ export const ORDER_TYPES = {
     timeAsc: { col: 'timestamp', dir: 'ASC' },
     timeDes: { col: 'timestamp', dir: 'DESC' },
 }
+
+export const PATTERNS = {
+    phone: "[0-9]{3}-[0-9]{7}",
+    title: "Please use format: 000 - 0000000"
+}

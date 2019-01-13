@@ -1,5 +1,6 @@
 import React from 'react';
 import {updateParticipant} from '../../routing/requests';
+import { PATTERNS } from '../../config/vars';
 
 class ParticipantsEditableTableRow extends React.Component {
 
@@ -31,7 +32,7 @@ class ParticipantsEditableTableRow extends React.Component {
         });
     }
 
-    onSaveDone(e,){
+    onSaveDone(e,data){
         e.persist();
         this.setState({
             updateParticipant: {
@@ -39,7 +40,8 @@ class ParticipantsEditableTableRow extends React.Component {
                 email: '',
                 phone: ''
             }
-        })
+        });
+        this.props.onAlertCallback(data)
         this.props.onCloseEdit(e);
     }
 
@@ -52,9 +54,9 @@ class ParticipantsEditableTableRow extends React.Component {
         }
 
         updateParticipant(updatedParticipant)
-            .then(() => {
+            .then((data) => {
                 this.props.actionCallback();
-                this.onSaveDone(e);
+                this.onSaveDone(e,data);
             })
     }
 
@@ -87,8 +89,8 @@ class ParticipantsEditableTableRow extends React.Component {
                             className='single-input'
                             name='phone'
                             type='tel'
-                            pattern="[0-9]{3}-[0-9]{6}"
-                            title="Please ensure the format ###-######"
+                            pattern={PATTERNS.phone}
+                            title={PATTERNS.title}
                             value={this.state.updateParticipant.phone}
                             onChange={this.handleOnChange}
                             required /> 
