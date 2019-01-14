@@ -1,32 +1,8 @@
 .app {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
     background-color: #e6e6e6;
     color: #7f8c8d;
-    height: 100vh;
-    width: 100vw;
-}
-
-.partable {
-    width: 91.2rem;
-    font-size: 1.6rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around; 
-    align-items: flex-start;
-   
-
-    &__heading,
-    &__body,
-    &__tr {
-        display: flex;
-    }
-
-    &__heading {
-        width: 100%;
-        background-color: white;
-        margin-bottom: 1rem;
-    }
-
-    &_headingth {
-        font-size: 6rem;
-    }
 }
